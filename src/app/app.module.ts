@@ -1,15 +1,29 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { TodoItemComponent } from './todo-item/todo-item.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
+import { AuthentificationComponent } from './authentification/authentification.component';
+
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from "@angular/fire/compat";
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TodoListComponent,
+    TodoItemComponent,
+    AuthentificationComponent
   ],
   imports: [
-    BrowserModule
-  ],
+    BrowserModule,
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase)
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

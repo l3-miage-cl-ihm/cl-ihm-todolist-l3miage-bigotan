@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface TodoItem {
   readonly label: string;
@@ -14,15 +14,16 @@ export interface TodoList {
 
 let idItem = 0;
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class TodolistService {
   private subj = new BehaviorSubject<TodoList>({label: 'L3 MIAGE', items: [] });
-  readonly observable = this.subj.asObservable();
-
-  constructor() {
-  }
+  readonly observable = this.subj.asObservable(); // comme un getter
+  
+  constructor() {  }
 
   create(...labels: readonly string[]): this {
     const L: TodoList = this.subj.value;
