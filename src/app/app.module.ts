@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -10,6 +10,9 @@ import { AuthentificationComponent } from './authentification/authentification.c
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from "@angular/fire/compat";
 
+import { appRoutingModule } from './app.routing';
+
+
 
 
 @NgModule({
@@ -17,13 +20,16 @@ import { AngularFireModule } from "@angular/fire/compat";
     AppComponent,
     TodoListComponent,
     TodoItemComponent,
-    AuthentificationComponent
+    AuthentificationComponent,
   ],
   imports: [
+    ReactiveFormsModule,
+    appRoutingModule,
     BrowserModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase)
     ],
+    
   providers: [],
   bootstrap: [AppComponent]
 })

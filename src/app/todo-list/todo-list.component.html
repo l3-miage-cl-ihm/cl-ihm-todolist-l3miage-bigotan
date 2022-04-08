@@ -1,3 +1,13 @@
+<div *ngIf="firebaseUserAuth.user | async as userF">
+   <h1>Hello {{ userF.displayName ? userF.displayName: userF.email}}!</h1>
+  <button (click)="logoutButton()">Logout</button>
+</div>
+
+<!-- <div *ngIf="auth.user | async as user; else showLogin">
+  <h1>Hello {{ user.displayName }}!</h1> 
+  <button (click)="logoutButton()">Logout</button>
+</div> -->
+
 <section class="todoapp" *ngIf="ObsTodoService | async as obsTodoList">
   <header class="header">
     <h1> {{obsTodoList.label}} </h1>
@@ -17,12 +27,12 @@
     />
     <label for="toggleAll">Mark all as complete</label>
     <ul class="todo-list">
-      <li *ngFor="let item of obsTodoList.items">
+      <li *ngFor="let i of obsTodoList.items">
         <app-todo-item
-          [todoItem]="item"
-          (remove)="delete($event)"
-          (update)="update($event, item)"
-
+          [todoItem]="i"
+          (remove)="delete(i)"
+          (update)="update($event, i)"
+          #myItem
         > 
 
         </app-todo-item>
@@ -44,6 +54,6 @@
         <a class="filterCompleted">Complétées</a>
       </li>
     </ul>
-    <!-- <button class="clear-completed" (click)="delete(items)">Supprimer cochées</button> -->
+    <button class="clear-completed">Supprimer cochées</button>
   </footer>
 </section>
